@@ -3,7 +3,7 @@
 
 In this project, we have trained an agent that successfully navigates a square environment and collects _banana_ shaped objects. When the agent collects a yellow object, it gets +1, and when it collects a blue object, it gets -1, otherwise 0. Following image shows an instance of the environment.
 
-![image1](./p1_navigation/image1.png)
+![image1](image1.png)
 
 The learning agent is designed using the concepts of model-free reinforcement learning (RL). Therefore, at each decision point, based on the state of the environment, the agent takes an action that maximizes to the objective of collecting more +1 objects (rewards). The agent has four actions - move forward, move backward, turn left, and turn right. The environment state is available as a 37 feature vector, which includes the velocity of the agent, distance to other object in the environment among others. 
 
@@ -11,17 +11,17 @@ The final performance criteria of the agent is to select objects such that the a
 
 ### Learning Algorithm
 
-I have used [Deep Double Q-learning](https://arxiv.org/pdf/1509.06461.pdf) algorithm (DDQN) as the basis to develop the learning agent. It has been shown that DDQN not only reduces the observed overestimation, but also leads to better performance. My implementation for learning, testing, and debugging is available in [ddqn.py](https://github.com/samindaa/deep-reinforcement-learning/blob/master/p1_navigation/ddqn.py).
+I have used [Deep Double Q-learning](https://arxiv.org/pdf/1509.06461.pdf) algorithm (DDQN) as the basis to develop the learning agent. It has been shown that DDQN not only reduces the observed overestimation, but also leads to better performance. My implementation for learning, testing, and debugging is available in [ddqn.py](ddqn.py).
 
 ### State Representation
 
 The agent receives a real feature vector containing 37 elements (size is (37,)). In order to capture the temporal aspects, I have also included _num\_history_ of past features to create the input state representation of size _(num\_history, 37)_. I have used this design, as we explore the architecture of the deep neural network (DNN), we can directly use nn.Conv1d, and nn.BatchNorm1d to develop a DNN with better modeling power and capacity. 
 
-The very first state is repeated _num\_history_ times to a Python deque. All the next states are appended to the deque and generated the state vector. The implementation is available [here](https://github.com/samindaa/deep-reinforcement-learning/blob/master/p1_navigation/ddqn.py#L124). 
+The very first state is repeated _num\_history_ times to a Python deque. All the next states are appended to the deque and generated the state vector. The implementation is available [here](ddqn.py#L124). 
 
 ### Deep Q-Network
 
-I have committed to the following DQN architecture (created with [pytorch-summary](https://github.com/sksq96/pytorch-summary)). The implementation is available [here](https://github.com/samindaa/deep-reinforcement-learning/blob/master/p1_navigation/ddqn.py#L142).
+I have committed to the following DQN architecture (created with [pytorch-summary](https://github.com/sksq96/pytorch-summary)). The implementation is available [here](ddqn.py#L142).
 
 	----------------------------------------------------------------
 	        Layer (type)               Output Shape         Param #
@@ -80,9 +80,12 @@ There are many knobs to tune in the algorithm. The parameters that worked best f
 | epsilon_end   |     0.01      |
 | epsilon_decay |   0.995       |
 
-The agent solved the problem within __600 episodes__, and the weights are saved in [checkpoint_solved.pth](https://github.com/samindaa/deep-reinforcement-learning/blob/master/p1_navigation/checkpoint_solved.pth). The following figure shows the performance during learning.
 
-![image2](./p1_navigation/scores.png)
+I have used [Adam](https://arxiv.org/abs/1412.6980) optimizer and [smooth L1 loss](https://en.wikipedia.org/wiki/Huber_loss) as the cost function. During training, the algorithm uses epsilon-greedy action selection policy, which has started at epsilon\_start and annealed to epsilon\_end with a decay eps * epsilon\_decay. eps is the epsilon value at the start of an episode.   
+
+The agent solved the problem within __600 episodes__, and the weights are saved in [checkpoint_solved.pth](checkpoint_solved.pth). The following figure shows the performance during learning.
+
+![image2](scores.png)
 
 Following is the learning trace.
 
@@ -269,6 +272,10 @@ The trained agent achieves +15 on the test environment. To run on the test envir
 The following video shows that the learned agent navigates the environment and collects +15 points. That is pretty awesome and cool!
 
 [![Alt text](https://img.youtube.com/vi/B7dAbOEP5Ps/0.jpg)](https://www.youtube.com/watch?v=B7dAbOEP5Ps)
+
+### Ideas for Future Work
+
+TODO(saminda)
 
 
 	
