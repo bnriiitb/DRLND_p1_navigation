@@ -15,7 +15,7 @@ I have used [Deep Double Q-learning](https://arxiv.org/pdf/1509.06461.pdf) algor
 
 ### State Representation
 
-The agent receives a real feature vector containing 37 elements (size is (37,)). In order to capture the temporal aspects, I have also included _num\_history_ of past features to create the input state representation of size _(num\_history, 37)_. I have used this design, as we explore the architecture of the deep neural network (DNN), we can directly use nn.Conv1d, and nn.BatchNorm1d to develop a DNN with better modeling power and capacity. 
+The agent receives a real feature vector containing 37 elements (size is (37,)). In order to capture the temporal quantities, I have also included _num\_history_ of past features to create the input state representation of size _(num\_history, 37)_. I have used this design, as we explore the architecture of the deep neural network (DNN), we can directly use nn.Conv1d, and nn.BatchNorm1d to develop a DNN with better modeling power and capacity. 
 
 The very first state is repeated _num\_history_ times to a Python deque. All the next states are appended to the deque and generated the state vector. The implementation is available [here](ddqn.py#L124). 
 
@@ -83,7 +83,7 @@ There are many knobs to tune in the algorithm. The parameters that worked best f
 
 I have used [Adam](https://arxiv.org/abs/1412.6980) optimizer and [smooth L1 loss](https://en.wikipedia.org/wiki/Huber_loss) as the cost function. During training, the algorithm uses epsilon-greedy action selection policy, which has started at epsilon\_start and annealed to epsilon\_end with a decay eps * epsilon\_decay. eps is the epsilon value at the start of an episode.   
 
-The agent solved the problem within __600 episodes__, and the weights are saved in [checkpoint_solved.pth](checkpoint_solved.pth). The following figure shows the performance during learning.
+The agent has solved the problem within __600 episodes__, and the weights are saved in [checkpoint_solved.pth](checkpoint_solved.pth). The following figure shows the performance during learning.
 
 ![image2](scores.png)
 
@@ -275,7 +275,11 @@ The following video shows that the learned agent navigates the environment and c
 
 ### Ideas for Future Work
 
-TODO(saminda)
+In this project, I have committed to implement the agent using Deep Double Q-learning algorithm. As the state, I have used the pre-defined 37 input features, that stack up with history. A convolution neural network (CNN), the bottom part of a DNN learn a rich representation for the problem. Therefore, learning from pixels is another alternative one could experiment with. It has been shown that a family of DQN algorithms have shown super-human capacity leaning from raw pixels. 
+
+In addition to DDQN, we can experiment with using the next generation of DQNs, such as [Dueling Network Architectures](https://arxiv.org/abs/1511.06581), and [Dynamic Frame skip Deep Q Network](https://arxiv.org/pdf/1605.05365.pdf), [Rainbow](https://arxiv.org/pdf/1710.02298.pdf), [Deep Recurrent Q-Learning](https://arxiv.org/pdf/1507.06527.pdf) among others. 
+
+In addition, I would also hypothesis that we could use both hand crafted features and raw pixel as inputs to further experiment with and solve the problem similar to [Siamese Neural Networks](https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf) for example. 
 
 
 	
