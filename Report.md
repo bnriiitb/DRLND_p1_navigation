@@ -89,7 +89,7 @@ The agent has solved the problem within __600 episodes__, and the weights are sa
 
 Following is the learning trace.
 
-	jupyter@my-compute-engine-instance:~/deep-reinforcement-learning/p1_navigation$ python3 ddqn.py --unity_file_name=/home/jupyter/Banana_Linux_NoVis/Banana.x86_64 --num_episodes=1200 --gamma=0.99 --num_episodes=600
+	jupyter@my-compute-engine-instance:~/deep-reinforcement-learning/p1_navigation$ python3 ddqn.py --unity_file_name=/home/jupyter/Banana_Linux_NoVis/Banana.x86_64 --gamma=0.99 --num_episodes=600
 	INFO:ddqn:use_cuda:       cuda
 	INFO:ddqn:input_width:    37
 	INFO:ddqn:num_actions:    4
