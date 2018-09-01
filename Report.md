@@ -277,7 +277,7 @@ The following video shows that the learned agent navigates the environment and c
 
 In this project, I have committed to implement the agent using Deep Double Q-learning algorithm. As the state, I have used the pre-defined 37 input features, that stack up with history. A convolution neural network (CNN), the bottom part of a DNN learn a rich representation for the problem. Therefore, learning from pixels is another alternative one could experiment with. It has been shown that a family of DQN algorithms have shown super-human capacity leaning from raw pixels. 
 
-In addition to DDQN, we can experiment with using the next generation of DQNs, such as [Dueling Network Architectures](https://arxiv.org/abs/1511.06581), and [Dynamic Frame skip Deep Q Network](https://arxiv.org/pdf/1605.05365.pdf), [Rainbow](https://arxiv.org/pdf/1710.02298.pdf), [Deep Recurrent Q-Learning](https://arxiv.org/pdf/1507.06527.pdf) among others. 
+In addition to DDQN, we can experiment with using the next generation of DQNs, such as [Dueling Network Architectures](https://arxiv.org/abs/1511.06581), [Dynamic Frame skip Deep Q Network](https://arxiv.org/pdf/1605.05365.pdf), [Rainbow](https://arxiv.org/pdf/1710.02298.pdf), [Deep Recurrent Q-Learning](https://arxiv.org/pdf/1507.06527.pdf) among others. 
 
 In addition, I would also hypothesis that we could use both hand crafted features and raw pixel as inputs to further experiment with and solve the problem similar to [Siamese Neural Networks](https://www.cs.cmu.edu/~rsalakhu/papers/oneshot1.pdf) for example. 
 
